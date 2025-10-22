@@ -19,8 +19,12 @@ BOT MENU
 
     type_test = input("Insert choice: ")
 
-    if type_test == 4:
+    if type_test == '4':
         Wrapper.close_driver()
+
+
+
+        exit()
 
     mode_test = ""
 
