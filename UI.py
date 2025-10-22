@@ -22,8 +22,6 @@ BOT MENU
     if type_test == '4':
         Wrapper.close_driver()
 
-
-
         exit()
 
     mode_test = ""
@@ -70,28 +68,47 @@ QUOTE MENU
 
     return int(type_test), int(mode_test), int(wpm)
 
-print("Welcome to Monkey Type Bot")
 
-Wrapper.cookie_accept()
-load_dotenv()
+def main():
+    print(r'''
+$$\      $$\                     $$\                        $$$$$$$$\                                  $$$$$$$\             $$\     
+$$$\    $$$ |                    $$ |                       \__$$  __|                                 $$  __$$\            $$ |    
+$$$$\  $$$$ | $$$$$$\  $$$$$$$\  $$ |  $$\  $$$$$$\  $$\   $$\ $$ |$$\   $$\  $$$$$$\   $$$$$$\        $$ |  $$ | $$$$$$\ $$$$$$\   
+$$\$$\$$ $$ |$$  __$$\ $$  __$$\ $$ | $$  |$$  __$$\ $$ |  $$ |$$ |$$ |  $$ |$$  __$$\ $$  __$$\       $$$$$$$\ |$$  __$$\\_$$  _|  
+$$ \$$$  $$ |$$ /  $$ |$$ |  $$ |$$$$$$  / $$$$$$$$ |$$ |  $$ |$$ |$$ |  $$ |$$ /  $$ |$$$$$$$$ |      $$  __$$\ $$ /  $$ | $$ |    
+$$ |\$  /$$ |$$ |  $$ |$$ |  $$ |$$  _$$<  $$   ____|$$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |$$   ____|      $$ |  $$ |$$ |  $$ | $$ |$$\ 
+$$ | \_/ $$ |\$$$$$$  |$$ |  $$ |$$ | \$$\ \$$$$$$$\ \$$$$$$$ |$$ |\$$$$$$$ |$$$$$$$  |\$$$$$$$\       $$$$$$$  |\$$$$$$  | \$$$$  |
+\__|     \__| \______/ \__|  \__|\__|  \__| \_______| \____$$ |\__| \____$$ |$$  ____/  \_______|      \_______/  \______/   \____/ 
+                                                     $$\   $$ |    $$\   $$ |$$ |                                                   
+                                                     \$$$$$$  |    \$$$$$$  |$$ |                                                   
+                                                      \______/      \______/ \__|
+    ''')
 
-login_choice = input("Vuoi fare il login (Y/n): ")
+    print()
+    print()
 
-if login_choice.upper() == "Y":
-    if not os.environ.get("EMAIL") or not os.environ.get("PASSWORD"):
-        with open(".env", "w") as f:
-            f.write("EMAIL=" + input("Email: ") + "\n")
-            f.write("PASSWORD=" + input("Password: "))
+    Wrapper.cookie_accept()
+    load_dotenv()
 
-        load_dotenv()
+    login_choice = input("Vuoi fare il login (Y/n): ")
 
-    Wrapper.access_account(os.environ.get("EMAIL"), os.environ.get("PASSWORD"))
-    Wrapper.home_page()
+    if login_choice.upper() == "Y":
+        if not os.environ.get("EMAIL") or not os.environ.get("PASSWORD"):
+            with open(".env", "w") as f:
+                f.write("EMAIL=" + input("Email: ") + "\n")
+                f.write("PASSWORD=" + input("Password: "))
 
-while True:
-    type_index, mode_index, wpm = menu()
-    Wrapper.home_page()
-    time.sleep(1)
+            load_dotenv()
 
-    Wrapper.select_test(type_index, mode_index)
-    Wrapper.take_test(60 / (wpm * 4.3))
+        Wrapper.access_account(os.environ.get("EMAIL"), os.environ.get("PASSWORD"))
+        Wrapper.home_page()
+
+    while True:
+        type_index, mode_index, wpm = menu()
+        Wrapper.home_page()
+        time.sleep(1)
+
+        Wrapper.select_test(type_index, mode_index)
+        Wrapper.take_test(60 / (wpm * 4.3))
+
+main()
