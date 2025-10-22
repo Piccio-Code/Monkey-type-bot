@@ -13,10 +13,15 @@ BOT MENU
 1) Time
 2) Words
 3) Quote
+4) Quit
 ===========================    
     ''')
 
     type_test = input("Insert choice: ")
+
+    if type_test == 4:
+        Wrapper.close_driver()
+
     mode_test = ""
 
     match type_test:

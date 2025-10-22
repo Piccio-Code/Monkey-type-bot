@@ -1,9 +1,7 @@
-import string
 import random
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver import Keys
 from selenium.common.exceptions import ElementNotInteractableException
 
 driver = webdriver.Firefox()
@@ -71,3 +69,6 @@ def access_account(email, password):
     login_btn = driver.find_element(By.XPATH, "html/body/div[11]/main/div[2]/div[4]/form/button")
     login_btn.click()
     time.sleep(3)
+
+def close_driver():
+    driver.close()
